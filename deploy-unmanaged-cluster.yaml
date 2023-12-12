@@ -1,0 +1,17 @@
+ClusterName: tic23-docker-uc     # name cluster
+KubeconfigPath: ""
+ExistingClusterKubeconfig: ""
+NodeImage: ""
+Provider: kind
+ProviderConfiguration: {}
+Cni: calico                                  # calico or antrea
+CniConfiguration: {}
+PodCidr: 10.244.0.0/16            # choose your private cidr
+ServiceCidr: 10.96.0.0/16             # choose your private cidr
+TkrLocation: projects.registry.vmware.com/tce/tkr:v0.17.0
+AdditionalPackageRepos:
+  - projects.registry.vmware.com/tce/main:v0.11.0
+PortsToForward: []
+SkipPreflight: false
+ControlPlaneNodeCount: "1"         # number of control planes
+WorkerNodeCount: "1"                  # number of workers
