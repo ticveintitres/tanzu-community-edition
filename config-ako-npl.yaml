@@ -1,0 +1,36 @@
+apiVersion: networking.tkg.tanzu.vmware.com/v1alpha1
+kind: AKODeploymentConfig
+metadata:
+  name: akodeploymentforworkloadcluster
+spec:
+  adminCredentialRef:
+    name: avi-controller-credentials
+    namespace: tkg-system-networking
+  certificateAuthorityRef:
+    name: avi-controller-ca
+    namespace: tkg-system-networking
+  cloudName: AVICLOUDNAME
+  clusterSelector:
+    matchLabels:
+      npl-enabled: "true"     USAR SOLO SI SE UTILIZA NODEPORTLOCAL
+      service_engine_group: VALOR ETIQUETA
+  controller: IP de Cluster AVI
+  dataNetwork:
+    cidr: X.X.X.X/X
+    name: Nombre VLAN en vCenter
+  controlPlaneNetwork:
+    cidr: X.X.X.X/X
+    name: Nombre VLAN en vCenter
+  extraConfigs:
+    cniPlugin: antrea
+    disableStaticRouteSync: false
+    ingress:
+      defaultIngressController: true
+      disableIngressClass: false
+      nodeNetworkList:
+        - cidrs:
+          - X.X.X.X/X
+          networkName: Nombre VLAN en vCenter
+      serviceType: NodePortLocal
+      shardVSSize: SMALL
+  serviceEngineGroup: Nombre del service engine group puesto en AVI
