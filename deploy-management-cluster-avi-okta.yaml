@@ -1,0 +1,98 @@
+#!---- BASIC CONFIGURACTION
+#!- Name of cluster " example : tic23-mgmt-cluster"
+CLUSTER_NAME: 
+#!- Plan, by default "dev" or "prod" , dev deploys one controlplane and one worker
+CLUSTER_PLAN: 
+#!- Cluster CIDR, internal network for cluster "example : 100.0.0.0/16
+CLUSTER_CIDR:
+#!- Service CIDR, internal network for cluster "example : 100.128.0.0/16
+SERVICE_CIDR:
+#!- Machine Health is prefered true
+ENABLE_MHC: true
+MHC_UNKNOWN_STATUS_TIMEOUT: 5m
+MHC_FALSE_STATUS_TIMEOUT: 12m
+ENABLE_AUDIT_LOGGING: true
+#!-Allow set the storage class
+ENABLE_DEFAULT_STORAGE_CLASS: true
+#!-Type of OS for the Kubernetes node. Choose between "photon" or "ubuntu"
+OS_NAME: ""
+#!-Type of OS version, choose "20.04" for ubuntu or "3" for photon
+OS_VERSION: ""
+#!-By defautl is amd64
+OS_ARCH: "amd64"
+#!- Select: vsphere, aws or azure
+INFRASTRUCTURE_PROVIDER:
+
+#!-----NODE CONFIGURATION
+#!- If select "dev" to plan for the cluster, only use the variable VSPHERE_CONTROL_PLANE_ENDPOINT:
+#!- choose between "small","medium","large" or "extra-large"
+SIZE:
+#!- IP of VIP to the kubernetes access cluster.
+VSPHERE_CONTROL_PLANE_ENDPOINT:
+#!- Number of Control plane
+CONTROL_PLANE_MACHINE_COUNT:
+#!- Number of Worker
+WORKER_MACHINE_COUNT:
+
+#!----VSPHERE CONFIGURATION
+#!-Use vmware type paths. Like the ones in the example.
+#!- Name of network for the nodes
+VSPHERE_NETWORK: /ticveintitres.com/network/HPE-MicroserverGen10/VMs
+#!- Template 
+VSPHERE_TEMPLATE: /ticveintitres.com/vm/Kubernetes_Templates/HPE-MicroserverGen10/photon-3-kube-v1.22.5+vmware.1 
+#!- A rsa_id key
+VSPHERE_SSH_AUTHORIZED_KEY:
+#!- User with permissions in vcenter 
+VSPHERE_USERNAME: administrator@ticveintitres.com
+#!- Password of user
+VSPHERE_PASSWORD: 
+#!- FQDN vcenter server
+VSPHERE_SERVER: vcenterv7.ticveintitres.com
+#!- Datacenter
+VSPHERE_DATACENTER: /ticveintitres.com
+#!- Resource pool. Recomendable
+VSPHERE_RESOURCE_POOL: /ticveintitres.com/host/HPE-MicroserverGen10/HPE-Cluster/Resources/tic23-mgmt-cluster
+#!- Datastore where will reside the nodes of the cluster
+VSPHERE_DATASTORE: /ticveintitres.com/datastore/HPE-MicroserverGen10/Kubernetes
+#!- vsphere folder
+VSPHERE_FOLDER: /ticveintitres.com/vm/HPE-MicroserverGen10/tic23-mgmt-cluster
+#!- Thumbprint of vcenter, tip: check web cerficate
+VSPHERE_TLS_THUMBPRINT:
+VSPHERE_INSECURE: true
+
+#! -----AUTOSCALER CONFIGURATION
+#! Allow the autoscaler on the cluster , by default false
+ENABLE_AUTOSCALER: false
+
+#!------ AVI CONFIGURATION
+
+#!  AVI Self Signed Controller Certificate in Base64 Certificado d autofirmado que se crea en AVI convertido a Base64
+AVI_CA_DATA_B64:
+#! Name of Cloud in AVI
+AVI_CLOUD_NAME:
+#! This is required for the kube-vip.
+AVI_CONTROL_PLANE_HA_PROVIDER: false
+#! Controller IP Cluster or Standalone AVI Server
+AVI_CONTROLLER:
+#! Name in vCenter for DATA NETWORK
+AVI_DATA_NETWORK:
+#! CIDR  DATA NETWORK
+AVI_DATA_NETWORK_CIDR:
+
+AVI_ENABLE: "true"
+AVI_LABELS: ""
+
+#! CIDR VLAN MANAGEMENT
+AVI_MANAGEMENT_CLUSTER_VIP_NETWORK_CIDR:
+#! Name VLAN MANAGEMENT
+AVI_MANAGEMENT_CLUSTER_VIP_NETWORK_NAME:
+#! AVI Password in Base64
+AVI_PASSWORD: <encoded:xxxxxxxxxxxxxxxxxxxxxxxxxxxx>
+#! Name of Service Engine Group
+AVI_SERVICE_ENGINE_GROUP:
+#! User with privileges in AVI
+AVI_USERNAME:
+
+#! IDENTITY MANAGEMENT TYPE
+#! Select ldap, oidc or none
+IDENTITY_MANAGEMENT_TYPE:
